@@ -16,12 +16,13 @@ go.app = function() {
         App.call(self, 'states:start');
 
         self.states.add('states:start', function(name) {
+	
             return new ChoiceState(name, {
                 question: 'Hi there! What do you want to do?',
 
                 choices: [
-                    new Choice('states:start', 'Show this menu again'),
-                    new Choice('states:end', 'Exit')],
+                    new Choice('states:tts', 'Hear text to speech'),
+                    new Choice('states:recorded', 'Hear recorded message')],
 
                 next: function(choice) {
                     return choice.value;
@@ -29,12 +30,21 @@ go.app = function() {
             });
         });
 
-        self.states.add('states:end', function(name) {
+        self.states.add('states:tts', function(name) {
             return new EndState(name, {
-                text: 'Thanks, cheers!',
+                text: 'Oak is strong and also gives shade.',
                 next: 'states:start'
             });
         });
+
+        self.states.add('states:recorded', function(name) {
+            // TODO: Add voice URL to message helper_metadata
+            return new EndState(name, {
+                text: '',
+                next: 'states:start'
+            });
+        });
+
     });
 
     return {
