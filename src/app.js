@@ -33,7 +33,7 @@ go.app = function() {
         self.states.add('states:recorded', function(name) {
             // TODO: Add voice URL to message helper_metadata
             return new EndState(name, {
-                text: '',
+                text: 'If you are hearing this, playing the recording has failed.',
                 next: 'states:start'
             });
         });

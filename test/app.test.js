@@ -61,7 +61,7 @@ describe("app", function() {
                     .input('2')
                     .check.interaction({
                         state: 'states:recorded',
-                        reply: ''
+                        reply: 'If you are hearing this, playing the recording has failed.'
                     })
                     .check(function(api, im, app) {
                         //TODO: Test that audio URL is added to message helper_metadata
