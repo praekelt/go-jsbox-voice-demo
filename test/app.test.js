@@ -30,39 +30,43 @@ describe("app", function() {
                         state: 'states:start',
                         reply: [
                             'Hi there! What do you want to do?',
-                            '1. Show this menu again',
-                            '2. Exit'
+                            '1. Hear text to speech',
+                            '2. Hear recorded message'
                         ].join('\n')
                     })
                     .run();
             });
         });
 
-        describe("when the user asks to see the menu again", function() {
-            it("should show the menu again", function() {
+        describe("when the user asks to hear text to speech", function() {
+            it("should send a text message", function() {
                 return tester
                     .setup.user.state('states:start')
                     .input('1')
                     .check.interaction({
-                        state: 'states:start',
+                        state: 'states:tts',
                         reply: [
-                            'Hi there! What do you want to do?',
-                            '1. Show this menu again',
-                            '2. Exit'
+                            'Oak is strong and also gives shade.'
                         ].join('\n')
                     })
+                    .check.reply.ends_session()
                     .run();
             });
         });
 
-        describe("when the user asks to exit", function() {
-            it("should say thank you and end the session", function() {
+        describe("when the user asks to hear recorded message", function() {
+            it("should send the voice recording", function() {
                 return tester
                     .setup.user.state('states:start')
                     .input('2')
                     .check.interaction({
-                        state: 'states:end',
-                        reply: 'Thanks, cheers!'
+                        state: 'states:recorded',
+                        reply: 'If you are hearing this, playing the recording has failed.',
+                        helper_metadata: {
+                            voice: {
+                                speech_url: 'https://github.com/praekelt/go-jsbox-voice-demo/raw/develop/data/42118__erh__nelsonmandela-freedomforall.wav'
+                            }
+                        }
                     })
                     .check.reply.ends_session()
                     .run();
