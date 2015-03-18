@@ -61,10 +61,12 @@ describe("app", function() {
                     .input('2')
                     .check.interaction({
                         state: 'states:recorded',
-                        reply: 'If you are hearing this, playing the recording has failed.'
-                    })
-                    .check(function(api, im, app) {
-                        //TODO: Test that audio URL is added to message helper_metadata
+                        reply: 'If you are hearing this, playing the recording has failed.',
+                        helper_metadata: {
+                            voice: {
+                                speech_url: 'https://github.com/praekelt/go-jsbox-voice-demo/raw/develop/data/42118__erh__nelsonmandela-freedomforall.wav'
+                            }
+                        }
                     })
                     .check.reply.ends_session()
                     .run();
