@@ -38,10 +38,14 @@ go.app = function() {
         });
 
         self.states.add('states:recorded', function(name) {
-            // TODO: Add voice URL to message helper_metadata
             return new EndState(name, {
                 text: 'If you are hearing this, playing the recording has failed.',
-                next: 'states:start'
+                next: 'states:start',
+                helper_metadata: {
+                    voice: {
+                        speech_url: 'https://github.com/praekelt/go-jsbox-voice-demo/raw/develop/data/42118__erh__nelsonmandela-freedomforall.wav'
+                    }
+                }
             });
         });
 
