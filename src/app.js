@@ -36,7 +36,7 @@ go.app = function() {
                 next: 'states:start',
                 helper_metadata: {
                     voice: {
-                        speech_url: 'https://cdn.rawgit.com/praekelt/go-jsbox-voice-demo/develop/data/42118__erh__nelsonmandela-freedomforall.wav'
+                        speech_url: 'https://cdn.rawgit.com/praekelt/go-jsbox-voice-demo/develop/data/160606__blouhond__gautrain-announcement-1.wav'
                     }
                 }
             });
